@@ -2,8 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db';
-// 1. IMPORT YOUR NEW ROUTES HERE
 import authRoutes from './routes/auth.routes';
+import leadRoutes from './routes/lead.routes';
 
 // Configure Environment Setup
 dotenv.config();
@@ -29,6 +29,7 @@ app.get('/', (req: Request, res: Response) => {
 // 2. MOUNT YOUR ROUTES HERE
 // Any request that starts with '/api/auth' will be sent to the authRoutes file
 app.use('/api/auth', authRoutes);
+app.use('/api/leads', leadRoutes);
 
 // Start Server Listen
 app.listen(PORT, () => {
