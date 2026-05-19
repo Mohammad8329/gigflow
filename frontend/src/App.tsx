@@ -2,13 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
-
-const DashboardPlaceholder = () => (
-  <div className="p-8 text-center flex flex-col items-center justify-center min-h-screen">
-    <h1 className="text-4xl font-bold mb-4">Dashboard</h1>
-    <p className="text-lg text-gray-600">Authentication successful. The Core Dashboard is next!</p>
-  </div>
-);
+import { DashboardPage } from './pages/DashboardPage';
+import { LeadDetailPage } from './pages/LeadDetailPage'; // <-- Import it
 
 function App() {
   return (
@@ -17,9 +12,9 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<DashboardPlaceholder />} />
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/leads/:id" element={<LeadDetailPage />} /> {/* <-- Add this route! */}
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

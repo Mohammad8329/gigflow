@@ -31,12 +31,14 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await api.post('/auth/login', credentials);
-      const { token, ...userData } = response.data;
+      
+      // Explicitly extract token and user from the nested data object
+      const { token, ...user } = response.data.data; 
       
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(userData));
+      localStorage.setItem('user', JSON.stringify(user));
       
-      set({ user: userData, token, isAuthenticated: true, isLoading: false });
+      set({ user, token, isAuthenticated: true, isLoading: false });
     } catch (error: any) {
       set({ error: error.response?.data?.message || 'Login failed', isLoading: false });
       throw error; 
@@ -47,12 +49,14 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ isLoading: true, error: null });
     try {
       const response = await api.post('/auth/register', userData);
-      const { token, ...newUser } = response.data;
+      
+      // Explicitly extract token and user from the nested data object
+      const { token, ...user } = response.data.data;
       
       localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(newUser));
+      localStorage.setItem('user', JSON.stringify(user));
       
-      set({ user: newUser, token, isAuthenticated: true, isLoading: false });
+      set({ user, token, isAuthenticated: true, isLoading: false });
     } catch (error: any) {
       set({ error: error.response?.data?.message || 'Registration failed', isLoading: false });
       throw error;
