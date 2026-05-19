@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { connectDB } from './config/db';
 import authRoutes from './routes/auth.routes';
 import leadRoutes from './routes/lead.routes';
+import { errorHandler } from './middleware/error.middleware';
 
 // Configure Environment Setup
 dotenv.config();
@@ -30,6 +31,8 @@ app.get('/', (req: Request, res: Response) => {
 // Any request that starts with '/api/auth' will be sent to the authRoutes file
 app.use('/api/auth', authRoutes);
 app.use('/api/leads', leadRoutes);
+// Apply the global Error Handler Middleware (must be the LAST thing you add)
+app.use(errorHandler);
 
 // Start Server Listen
 app.listen(PORT, () => {
