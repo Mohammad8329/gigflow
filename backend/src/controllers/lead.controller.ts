@@ -2,6 +2,42 @@ import { Response } from 'express';
 import Lead from '../models/Lead.model';
 import { logActivity } from '../services/activity.service';
 import { AuthenticatedRequest } from '../middleware/auth.middleware';
+import { generateCSV } from '../utils/csvExport';
+
+/**
+ * @desc    Export filtered leads as CSV
+ * @route   GET /api/leads/export/csv
+ */
+export const exportLeadsCSV = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const { status, source, search, sort } = req.query;
+    
+    const query: any = {};
+    if (status) query.status = status;
+    if (source) query.source = source;
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: 'i' } },
+        { email: { $regex: search, $options: 'i' } },
+      ];
+    }
+
+    const sortOrder = sort === 'oldest' ? 1 : -1;
+
+    // Notice we removed .skip() and .limit() here!
+    const leads = await Lead.find(query).sort({ createdAt: sortOrder });
+
+    const csvString = generateCSV(leads);
+
+    // Set headers to force the browser/client to download it as a file
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', 'attachment; filename="leads_export.csv"');
+    
+    res.status(200).send(csvString);
+  } catch (error) {
+    res.status(500).json({ success: false, message: (error as Error).message });
+  }
+};
 
 /**
  * @desc    Create a new lead
