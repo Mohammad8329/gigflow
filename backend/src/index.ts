@@ -2,6 +2,8 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db';
+// 1. IMPORT YOUR NEW ROUTES HERE
+import authRoutes from './routes/auth.routes';
 
 // Configure Environment Setup
 dotenv.config();
@@ -23,6 +25,10 @@ app.get('/', (req: Request, res: Response) => {
     message: "ServiceHive Backend API Running Smoothly."
   });
 });
+
+// 2. MOUNT YOUR ROUTES HERE
+// Any request that starts with '/api/auth' will be sent to the authRoutes file
+app.use('/api/auth', authRoutes);
 
 // Start Server Listen
 app.listen(PORT, () => {
