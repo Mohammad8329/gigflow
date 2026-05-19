@@ -8,7 +8,7 @@ interface FilterBarProps {
 export const FilterBar = ({ onStatusChange, onSourceChange }: FilterBarProps) => {
   return (
     <div className="flex flex-col sm:flex-row gap-3">
-      <Select onValueChange={(val: string) => onStatusChange(val === 'all' ? '' : val)}>
+      <Select onValueChange={(val: string | null) => onStatusChange(val === 'all' || !val ? '' : val)}>
         <SelectTrigger className="w-full sm:w-[180px]">
           <SelectValue placeholder="Filter by Status" />
         </SelectTrigger>
@@ -21,7 +21,7 @@ export const FilterBar = ({ onStatusChange, onSourceChange }: FilterBarProps) =>
         </SelectContent>
       </Select>
 
-      <Select onValueChange={(val: string) => onSourceChange(val === 'all' ? '' : val)}>
+      <Select onValueChange={(val: string | null) => onSourceChange(val === 'all' || !val ? '' : val)}>
         <SelectTrigger className="w-full sm:w-[180px]">
           <SelectValue placeholder="Filter by Source" />
         </SelectTrigger>

@@ -42,7 +42,7 @@ export const LeadForm = ({ initialData, onSubmit, isLoading }: LeadFormProps) =>
 
       <div className="space-y-2">
         <Label htmlFor="status">Status</Label>
-        <Select value={status} onValueChange={setStatus}>
+        <Select value={status} onValueChange={(val) => setStatus(val || 'New')}>
           <SelectTrigger>
             <SelectValue placeholder="Select status" />
           </SelectTrigger>
@@ -57,7 +57,7 @@ export const LeadForm = ({ initialData, onSubmit, isLoading }: LeadFormProps) =>
 
       <div className="space-y-2">
         <Label htmlFor="source">Source</Label>
-        <Select value={source} onValueChange={setSource}>
+        <Select value={source} onValueChange={(val) => setSource(val || 'Website')}>
           <SelectTrigger>
             <SelectValue placeholder="Select source" />
           </SelectTrigger>
