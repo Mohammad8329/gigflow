@@ -57,7 +57,7 @@ export const DashboardPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#0c0d0e] text-slate-800 dark:text-slate-100 transition-colors duration-300 font-sans p-6 md:p-8">
+    <div className="min-h-screen bg-[#f8fafc] dark:bg-[#0c0d0e] text-slate-800 dark:text-slate-100 transition-colors duration-300 font-sans p-4 sm:p-6 md:p-8 overflow-x-hidden">
       <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Header Bar */}
@@ -71,7 +71,7 @@ export const DashboardPage = () => {
             </p>
           </div>
           
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             {/* Dark Mode Toggle */}
             <ThemeToggle />
 

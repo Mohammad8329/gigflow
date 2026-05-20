@@ -24,7 +24,7 @@ export const SearchInput = ({ onSearch }: SearchInputProps) => {
   }, [debouncedValue, onSearch]);
 
   return (
-    <div className="relative flex-1 max-w-md">
+    <div className="relative flex-1 w-full max-w-md">
       <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
       <input
         className="pl-10 h-10 w-full rounded-full border border-slate-200/60 dark:border-slate-800/20 bg-slate-50/50 dark:bg-slate-900/30 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/55 px-4"

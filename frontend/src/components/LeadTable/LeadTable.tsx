@@ -47,7 +47,7 @@ export const LeadTable = ({ leads }: LeadTableProps) => {
         {leads.map((lead) => (
           <div 
             key={lead._id}
-            className="group grid grid-cols-1 md:grid-cols-12 items-center gap-4 px-8 py-5 bg-white/70 dark:bg-slate-950/20 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/10 rounded-2xl md:rounded-[1.5rem] shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700/50 hover:translate-y-[-1px] transition-all duration-300 cursor-pointer"
+            className="group grid grid-cols-1 md:grid-cols-12 items-center gap-4 px-4 md:px-8 py-5 bg-white/70 dark:bg-slate-950/20 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/10 rounded-2xl md:rounded-[1.5rem] shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700/50 hover:translate-y-[-1px] transition-all duration-300 cursor-pointer"
             onClick={() => navigate(`/leads/${lead._id}`)}
           >
             {/* Column 1: Name & Email */}
