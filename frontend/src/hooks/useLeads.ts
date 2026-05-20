@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import api from '../api/axios';
 
 // Match this exactly to the filters we built in your backend controller
@@ -25,6 +25,6 @@ export const useLeads = (params: FetchLeadsParams) => {
     queryKey: ['leads', params], 
     queryFn: () => fetchLeads(params),
     // This keeps the current table data visible while fetching the next page, preventing ugly UI flickering
-    placeholderData: (previousData) => previousData, 
+    placeholderData: keepPreviousData, 
   });
 };

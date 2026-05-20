@@ -44,12 +44,12 @@ export const RegisterPage = () => {
           <h2 className="text-3xl font-extrabold tracking-tight text-center text-black dark:text-white mb-2">
             Create an account
           </h2>
-          <p className="text-sm text-center text-black/85 dark:text-slate-300 max-w-sm mx-auto mb-8 leading-relaxed">
+          <p className="text-sm text-center text-black/85 dark:text-slate-300 mb-8 leading-relaxed">
             Sign up to manage your sales pipeline and track leads in real time. For free
           </p>
         </div>
 
-        <div className="px-2">
+        <div className="w-full">
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Full Name Field with Icon */}
             <div className="relative">

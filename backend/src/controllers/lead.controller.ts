@@ -1,5 +1,6 @@
 import { Response } from 'express';
 import Lead from '../models/Lead.model';
+import Activity from '../models/Activity.model';
 import { logActivity } from '../services/activity.service';
 import { AuthenticatedRequest } from '../middleware/auth.middleware';
 import { generateCSV } from '../utils/csvExport';
@@ -174,7 +175,7 @@ export const updateLead = async (req: AuthenticatedRequest, res: Response): Prom
     const updatedLead = await Lead.findByIdAndUpdate(
       leadId,
       { name, email, status, source, updatedBy: userId },
-      { new: true, runValidators: true }
+      { returnDocument: 'after', runValidators: true }
     );
 
     res.status(200).json({ success: true, data: updatedLead });
@@ -208,6 +209,19 @@ export const deleteLead = async (req: AuthenticatedRequest, res: Response): Prom
     });
 
     res.status(200).json({ success: true, message: 'Lead removed successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: (error as Error).message });
+  }
+};
+
+/**
+ * @desc    Get activity timeline for a specific lead
+ * @route   GET /api/leads/:id/activity
+ */
+export const getLeadActivity = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const activities = await Activity.find({ leadId: req.params.id }).sort({ createdAt: -1 });
+    res.status(200).json({ success: true, data: activities });
   } catch (error) {
     res.status(500).json({ success: false, message: (error as Error).message });
   }

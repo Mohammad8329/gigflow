@@ -43,12 +43,12 @@ export const LoginPage = () => {
           <h2 className="text-3xl font-extrabold tracking-tight text-center text-black dark:text-white mb-2">
             Sign in with email
           </h2>
-          <p className="text-sm text-center text-black/85 dark:text-slate-300 max-w-sm mx-auto mb-8 leading-relaxed">
+          <p className="text-sm text-center text-black/85 dark:text-slate-300 mb-8 leading-relaxed">
             Access your leads, analytics, and sales pipeline. For free
           </p>
         </div>
 
-        <div className="px-2">
+        <div className="w-full">
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email Field with Icon */}
             <div className="relative">

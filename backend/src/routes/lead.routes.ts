@@ -6,6 +6,7 @@ import {
   updateLead,
   deleteLead,
   exportLeadsCSV,
+  getLeadActivity,
 } from '../controllers/lead.controller';
 import { protect } from '../middleware/auth.middleware';
 import { authorize } from '../middleware/role.middleware';
@@ -21,6 +22,8 @@ router.route('/')
   .post(createLead);
 
 router.get('/export/csv', authorize('admin'), exportLeadsCSV);
+
+router.get('/:id/activity', getLeadActivity);
 
 router.route('/:id')
   .get(getLeadById)
