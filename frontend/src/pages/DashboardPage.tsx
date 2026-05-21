@@ -66,10 +66,6 @@ export const DashboardPage = () => {
             <h1 className="font-heading text-4xl md:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
               Leads Dashboard
             </h1>
-            <div>
-            <h1 className="font-heading text-4xl md:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
-              Leads Dashboard
-            </h1>
             <div className="flex items-center mt-2 text-xs text-slate-400 dark:text-slate-500 font-medium">
               Welcome back, <span className="font-bold text-slate-700 dark:text-slate-300 ml-1">{user?.name}</span>
               {user?.role && (
@@ -82,7 +78,6 @@ export const DashboardPage = () => {
                 </span>
               )}
             </div>
-          </div>
           </div>
           
           <div className="flex flex-wrap items-center gap-3">
