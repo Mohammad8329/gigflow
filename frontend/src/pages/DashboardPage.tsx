@@ -66,9 +66,23 @@ export const DashboardPage = () => {
             <h1 className="font-heading text-4xl md:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
               Leads Dashboard
             </h1>
-            <p className="text-xs text-slate-400 dark:text-slate-500 mt-2 font-medium">
-              Welcome back, <span className="font-bold text-slate-700 dark:text-slate-350">{user?.name}</span>
-            </p>
+            <div>
+            <h1 className="font-heading text-4xl md:text-5xl font-normal text-slate-900 dark:text-white tracking-tight">
+              Leads Dashboard
+            </h1>
+            <div className="flex items-center mt-2 text-xs text-slate-400 dark:text-slate-500 font-medium">
+              Welcome back, <span className="font-bold text-slate-700 dark:text-slate-300 ml-1">{user?.name}</span>
+              {user?.role && (
+                <span className={`ml-2.5 px-2 py-0.5 rounded-full border text-[10px] uppercase tracking-wider font-bold ${
+                  user.role === 'admin' 
+                    ? 'border-indigo-200 bg-indigo-50 text-indigo-600 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-400'
+                    : 'border-slate-200 bg-slate-100 text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400'
+                }`}>
+                  {user.role}
+                </span>
+              )}
+            </div>
+          </div>
           </div>
           
           <div className="flex flex-wrap items-center gap-3">

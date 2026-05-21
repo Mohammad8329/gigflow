@@ -156,19 +156,41 @@ export const updateLead = async (req: AuthenticatedRequest, res: Response): Prom
       return;
     }
 
-    // Detect if status changed for our timeline feature
+    // 1. Set up a tracking flag
+    let hasSpecificChange = false;
+
+    // 2. Check Status
     if (status && status !== oldLead.status) {
       logActivity({
-        leadId,
-        userId,
-        userName,
-        action: 'status_changed',
-        field: 'status',
-        oldValue: oldLead.status,
-        newValue: status,
+        leadId, userId, userName, 
+        action: 'status_changed', field: 'status', 
+        oldValue: oldLead.status, newValue: status,
       });
-    } else {
-      // Generic update log
+      hasSpecificChange = true;
+    }
+
+    // 3. Check Source
+    if (source && source !== oldLead.source) {
+      logActivity({
+        leadId, userId, userName, 
+        action: 'source_changed', field: 'source', 
+        oldValue: oldLead.source, newValue: source,
+      });
+      hasSpecificChange = true;
+    }
+
+    // 4. Check Email
+    if (email && email !== oldLead.email) {
+      logActivity({
+        leadId, userId, userName, 
+        action: 'email_changed', field: 'email', 
+        oldValue: oldLead.email, newValue: email,
+      });
+      hasSpecificChange = true;
+    }
+
+    // 5. Fallback: If they only updated something like the Name
+    if (!hasSpecificChange) {
       logActivity({ leadId, userId, userName, action: 'updated' });
     }
 

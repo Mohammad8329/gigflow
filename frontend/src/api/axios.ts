@@ -21,13 +21,22 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // Clear local storage
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
       
-      // Force redirect to login page
-      window.location.href = '/login';
+      // 🛑 GUARD RAIL: Check what page the user is currently on
+      const currentPath = window.location.pathname;
+      
+      // Only force a redirect if they are NOT on the login or register pages
+      if (currentPath !== '/login' && currentPath !== '/register') {
+        // Clear local storage
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        
+        // Force redirect to login page
+        window.location.href = '/login';
+      }
     }
+    
+    // Always reject the promise so the local component's try/catch block can handle the error message!
     return Promise.reject(error);
   }
 );

@@ -11,17 +11,23 @@ export const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { register, isLoading, error, clearError } = useAuthStore();
+  const { register, isLoading, clearError } = useAuthStore();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     clearError();
+    setFormError(null);
+    
     try {
       await register({ name, email, password, role: 'sales' });
       navigate('/');
-    } catch (err) {}
-  };
+  } catch (err: any) {
+    const message = err.response?.data?.message || 'Registration failed. Please try again.';
+    setFormError(message);
+  }
+};
 
   return (
     <div className="auth-page-container relative flex items-center justify-center min-h-screen w-full bg-gradient-to-tr from-sky-200 via-blue-100 to-purple-200 dark:from-blue-950 dark:via-slate-950 dark:to-purple-950 px-4 overflow-hidden">
@@ -101,9 +107,9 @@ export const RegisterPage = () => {
             </div>
 
             {/* Error Message */}
-            {error && (
-              <div className="text-sm text-red-500 font-medium text-center bg-red-500/10 py-2 rounded-xl">
-                {error}
+            {formError && (
+              <div className="text-sm text-red-500 font-medium text-center bg-red-500/10 py-2 rounded-xl border border-red-500/20 animate-in fade-in slide-in-from-top-2">
+                {formError}
               </div>
             )}
 

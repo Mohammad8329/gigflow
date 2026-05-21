@@ -4,7 +4,8 @@ interface LogActivityParams {
   leadId: any;
   userId: any;
   userName: string;
-  action: 'created' | 'updated' | 'deleted' | 'status_changed' | 'note_added';
+  // 👇 Added 'source_changed' and 'email_changed' to the allowed list
+  action: 'created' | 'updated' | 'deleted' | 'status_changed' | 'source_changed' | 'email_changed' | 'note_added';
   field?: string;
   oldValue?: string;
   newValue?: string;

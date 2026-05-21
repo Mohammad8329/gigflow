@@ -1,15 +1,15 @@
 import mongoose, { Schema, Document, Types } from 'mongoose';
 
 export interface IActivity extends Document {
-  leadId: Types.ObjectId;
-  userId: Types.ObjectId;
-  userName: string; 
-  action: 'created' | 'updated' | 'deleted' | 'status_changed' | 'note_added';
+  leadId: mongoose.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
+  userName: string;
+  // 👇 Add the new actions here
+  action: 'created' | 'updated' | 'deleted' | 'status_changed' | 'source_changed' | 'email_changed' | 'note_added';
   field?: string;
   oldValue?: string;
   newValue?: string;
   note?: string;
-  createdAt: Date;
 }
 
 const ActivitySchema: Schema = new Schema(
@@ -32,7 +32,7 @@ const ActivitySchema: Schema = new Schema(
     },
     action: {
       type: String,
-      enum: ['created', 'updated', 'deleted', 'status_changed', 'note_added'],
+      enum: ['created', 'updated', 'deleted', 'status_changed', 'source_changed', 'email_changed', 'note_added'],
       required: true,
     },
     field: {
@@ -48,10 +48,7 @@ const ActivitySchema: Schema = new Schema(
       type: String,
     },
   },
-  {
-    // We only need createdAt for a timeline, so we disable updatedAt
-    timestamps: { createdAt: true, updatedAt: false },
-  }
+  { timestamps: true },
 );
 
 export default mongoose.model<IActivity>('Activity', ActivitySchema);

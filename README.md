@@ -1,44 +1,35 @@
-# Gigflow
+# Smart Leads Dashboard 🚀
 
-A modern web application featuring a TypeScript/Express backend and a React/Vite/Tailwind frontend.
+A full-stack, enterprise-grade Lead Management CRM built with the MERN stack and strict TypeScript. Designed with clean architecture, robust state management, and a highly polished UI.
 
-## Project Structure
+![Dashboard Screenshot](frontend/public/screenshot.png)
 
-- `backend/`: Node.js, Express, TypeScript, Mongoose
-- `frontend/`: React, Vite, Tailwind CSS v4, shadcn/ui
+## ✨ Key Features & Highlights
 
-## Getting Started
+* **Role-Based Access Control (RBAC):** Admin and Sales user roles. System securely hides admin-only features (like CSV Export) from Sales users.
+* **Advanced Filtering & Pagination:** Server-side pagination (10 items/page) combined with debounced multi-parameter search (Name, Email, Status, Source).
+* **Activity Timeline (Standout Feature):** A chronological, real-time audit trail for every lead. Tracks who created the lead and logs every status change automatically.
+* **Responsive Glassmorphism UI:** Built with Tailwind CSS v4 and Shadcn components, fully optimized for both desktop and mobile viewing.
+* **Dark Mode Support:** Seamless theme toggling with user preference tracking.
+* **Containerized Ecosystem:** Fully Dockerized architecture (MongoDB, Node API, Vite/Nginx Frontend) for one-command deployment.
 
-### Prerequisites
+## 🛠️ Tech Stack
 
-Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+* **Frontend:** React 18, TypeScript, Vite, Tailwind CSS v4, React Query, Zustand (State Management), React Router.
+* **Backend:** Node.js, Express, TypeScript, Mongoose, JSON Web Tokens (JWT), bcryptjs.
+* **Infrastructure:** Docker, Docker Compose, Nginx.
 
-### Installation
+## 🔐 Test Credentials
 
-Install dependencies in both directories:
+Use these credentials to test the Role-Based Access features:
+* **Admin User:** `admin@crm.com` | Password: `password123` *(Has access to CSV Export)*
+* **Sales User:** `rahul@crm.com` | Password: `password123` *(Standard access)*
 
-```bash
-# Install backend dependencies
-cd backend
-npm install
+## 🚀 Setup Instructions
 
-# Install frontend dependencies
-cd ../frontend
-npm install
-```
-
-### Running the Application
-
-To run the development servers:
-
-#### 1. Start the Backend
-```bash
-cd backend
-npm run dev
-```
-
-#### 2. Start the Frontend
-```bash
-cd frontend
-npm run dev
-```
+### Option A: One-Click Docker Setup (Recommended)
+Make sure Docker Desktop is running on your machine.
+1. Clone the repository.
+2. Run the following command in the root directory:
+   ```bash
+   docker-compose up --build
