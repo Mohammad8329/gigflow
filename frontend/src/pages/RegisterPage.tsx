@@ -50,9 +50,37 @@ export const RegisterPage = () => {
           <h2 className="text-3xl font-extrabold tracking-tight text-center text-black dark:text-white mb-2">
             Create an account
           </h2>
-          <p className="text-sm text-center text-black/85 dark:text-slate-300 mb-8 leading-relaxed">
+          <p className="text-sm text-center text-black/85 dark:text-slate-300 mb-6 leading-relaxed">
             Sign up to manage your sales pipeline and track leads in real time. For free
           </p>
+        </div>
+
+        {/* Demo Credentials */}
+        <div className="mb-6 p-4 bg-sky-500/10 dark:bg-sky-500/5 border border-sky-200/50 dark:border-sky-500/20 rounded-2xl text-sm relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-r from-sky-400/0 via-sky-400/10 to-sky-400/0 dark:from-sky-500/0 dark:via-sky-500/10 dark:to-sky-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+          <p className="font-bold text-black dark:text-white mb-1 text-center flex items-center justify-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+            Skip Registration
+          </p>
+          <p className="text-xs text-center text-slate-600 dark:text-slate-400 mb-3">
+            You can use these demo credentials to <Link to="/login" className="text-sky-600 dark:text-sky-400 hover:underline font-semibold">sign in directly</Link>:
+          </p>
+          <div className="space-y-2 text-slate-700 dark:text-slate-300">
+            <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40 border border-white/50 dark:border-slate-800/50 hover:bg-white/60 dark:hover:bg-slate-800/80 transition-colors">
+              <div className="flex flex-col">
+                <span className="font-bold text-black dark:text-white text-xs">Admin User</span>
+                <span className="text-[10px] uppercase tracking-wider text-sky-600 dark:text-sky-400 font-semibold">Has CSV Export</span>
+              </div>
+              <span className="font-mono text-xs bg-white dark:bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm mt-1 sm:mt-0 select-all cursor-pointer">admin@crm.com / password123</span>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center p-2 rounded-xl bg-white/40 dark:bg-slate-900/40 border border-white/50 dark:border-slate-800/50 hover:bg-white/60 dark:hover:bg-slate-800/80 transition-colors">
+              <div className="flex flex-col">
+                <span className="font-bold text-black dark:text-white text-xs">Sales User</span>
+                <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Standard Access</span>
+              </div>
+              <span className="font-mono text-xs bg-white dark:bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm mt-1 sm:mt-0 select-all cursor-pointer">rahul@crm.com / password123</span>
+            </div>
+          </div>
         </div>
 
         <div className="w-full">

@@ -4,6 +4,13 @@ A full-stack, enterprise-grade Lead Management CRM built with the MERN stack and
 
 ![Dashboard Screenshot](./frontend/public/screenshot.png)
 
+## 🌍 Live Demo & Deployments
+
+- **Live Dashboard (Frontend):** [https://gigflow-two-jade.vercel.app](https://gigflow-two-jade.vercel.app)
+- **Production API (Backend):** `https://gigflow-g88v.onrender.com/api`
+
+*(Note: The backend is hosted on Render's free tier. If the server has been idle, the very first login request may take 30-50 seconds to wake the server up).*
+
 ## ✨ Key Features & Highlights
 
 - **Role-Based Access Control (RBAC):** Admin and Sales user roles. System securely hides admin-only features (like CSV Export) from Sales users.
@@ -21,7 +28,7 @@ A full-stack, enterprise-grade Lead Management CRM built with the MERN stack and
 
 ## 🔐 Test Credentials
 
-Use these credentials to test the Role-Based Access features:
+Use these credentials to test the Role-Based Access features on the live demo or local setup:
 
 - **Admin User:** `admin@crm.com` | Password: `password123` *(Has access to CSV Export)*
 - **Sales User:** `rahul@crm.com` | Password: `password123` *(Standard access)*
@@ -36,28 +43,59 @@ Make sure Docker Desktop is running on your machine.
 2. Run the following command in the root directory to build and start the containers:
    ```bash
    docker-compose up --build
-   ```
+
+
+
 3. **Crucial Step:** Once the containers are running, open a new terminal window and run the seed script to populate the database with the test credentials and mock leads:
-   ```bash
-   docker exec -it smart_leads_backend npm run seed
-   ```
+```bash
+docker exec -it smart_leads_backend npm run seed
+
+```
+
+
 4. Open `http://localhost:3000` in your browser and log in with the test credentials above.
 
 ### Option B: Manual Local Setup
 
 **1. Database & Backend:**
+
 ```bash
 cd backend
 npm install
 npm run seed  # Automatically creates test users and mock leads
 npm run dev
+
 ```
 
 **2. Frontend:**
+
 ```bash
 cd frontend
 npm install
 npm run dev
+
+```
+
+## ⚙️ Environment Variables (.env)
+
+If running locally without Docker, create the following `.env` files in their respective directories.
+
+### Backend Variables (`backend/.env`)
+
+```env
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/servicehive
+JWT_SECRET=super_secret_key_change_this_later
+JWT_EXPIRES_IN=7d
+
+```
+
+### Frontend Variables (`frontend/.env`)
+
+```env
+VITE_API_URL=http://localhost:5000/api
+# Note: In the production environment (Vercel), this is set to [https://gigflow-g88v.onrender.com/api](https://gigflow-g88v.onrender.com/api)
+
 ```
 
 ## 📂 Architecture & Folder Structure
@@ -81,6 +119,7 @@ npm run dev
 │   ├── nginx.conf         # Production routing configuration
 │   └── Dockerfile         # Multi-stage Vite + Nginx build
 └── docker-compose.yml     # Service orchestration
+
 ```
 
 ## 📖 API Documentation
@@ -89,19 +128,20 @@ All endpoints are prefixed with `/api` and require a Bearer token in the `Author
 
 ### Authentication
 
-- `POST /auth/register` - Register a new user.
-- `POST /auth/login` - Authenticate and receive a JWT.
+* `POST /auth/register` - Register a new user.
+* `POST /auth/login` - Authenticate and receive a JWT.
 
 ### Leads (CRUD & Filtering)
 
-- `GET /leads` - Fetch paginated leads.  
-  **Params:** `page`, `limit`, `search`, `status`, `source`, `sort`
-- `GET /leads/:id` - Fetch a single lead by ID.
-- `POST /leads` - Create a new lead.
-- `PUT /leads/:id` - Update an existing lead.
-- `DELETE /leads/:id` - Delete a lead.
-- `GET /leads/export/csv` - Export filtered leads (Admin only).
+* `GET /leads` - Fetch paginated leads.
+**Params:** `page`, `limit`, `search`, `status`, `source`, `sort`
+* `GET /leads/:id` - Fetch a single lead by ID.
+* `POST /leads` - Create a new lead.
+* `PUT /leads/:id` - Update an existing lead.
+* `DELETE /leads/:id` - Delete a lead.
+* `GET /leads/export/csv` - Export filtered leads (Admin only).
 
 ### Lead Activities
 
-- `GET /leads/:id/activity` - Fetch the chronological audit trail for a specific lead.
+* `GET /leads/:id/activity` - Fetch the chronological audit trail for a specific lead.
+
